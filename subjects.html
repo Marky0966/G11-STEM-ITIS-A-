@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Subjects · G11 STEM ITIS A1</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<main><h2>Subjects & Lessons</h2><div class="grid"><select id="fs"></select><select id="ft"></select></div><div id="list"></div>
+<div class="card" style="margin-top:20px"><h3>➕ Magdagdag ng lesson / notes</h3><p style="color:var(--mute)" id="hint"></p>
+<select id="s"></select><select id="t"></select><input id="ti" placeholder="Pamagat"><textarea id="tx" rows="4" placeholder="Notes / lesson"></textarea><input type="file" id="im" accept="image/*"><button onclick="add()">Isumite</button></div></main>
+<script src="app.js"></script><script>guard();nav('subjects.html');
+const q=new URLSearchParams(location.search);
+const opt=(a,all)=>(all?'<option value="">Lahat</option>':'')+a.map(x=>`<option>${esc(x)}</option>`).join('');
+fs.innerHTML=opt(SUBJECTS,1);ft.innerHTML=opt(TERMS,1);s.innerHTML=opt(SUBJECTS);t.innerHTML=opt(TERMS);
+fs.value=q.get('subject')||'';ft.value=q.get('term')||'';fs.onchange=ft.onchange=show;
+hint.textContent=isOwner()?'Ikaw ang owner: awtomatikong approved ang idadagdag mo.':'Hihintayin muna ang approval ng owner bago lumabas.';
+function show(){const L=db.get('lessons',[]).filter(l=>l.ok&&(!fs.value||l.s==fs.value)&&(!ft.value||l.t==ft.value));
+list.innerHTML=L.length?L.map(l=>`<div class="card" style="margin:10px 0"><span class="tag">${esc(l.s)} · ${esc(l.t)}</span><h3>${esc(l.ti)}</h3><p style="white-space:pre-wrap">${esc(l.tx)}</p>${l.im?`<img class="n" src="${l.im}">`:''}<small style="color:var(--mute)">ni ${esc(l.by)}</small></div>`).join(''):'<p class="alert">Wala pang lesson dito. Maging una! ✨</p>'}
+function add(){const f=im.files[0];const save=d=>{const L=db.get('lessons',[]);L.push({id:Date.now(),s:s.value,t:t.value,ti:ti.value||'Walang pamagat',tx:tx.value,im:d,by:user().name,ok:isOwner()});db.set('lessons',L);alert(isOwner()?'Na-post na!':'Naisumite! Hintayin ang approval ng owner.');ti.value=tx.value=im.value='';show()};
+if(f){if(f.size>300000)return alert('Masyadong malaki ang larawan (max 300KB).');const r=new FileReader();r.onload=()=>save(r.result);r.readAsDataURL(f)}else save('')}
+show();</script></body></html>

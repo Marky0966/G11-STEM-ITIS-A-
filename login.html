@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login · G11 STEM ITIS A1</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<main style="max-width:440px"><div class="card"><img src="logo.svg" alt="G11 STEM ITIS A1" style="max-width:100%"><h1>Maligayang pagdating 👋</h1><p style="color:var(--mute)">Lesson Reviewer</p>
+<button class="ok" style="width:100%" onclick="googleLogin()">Continue with Google</button>
+<p style="text-align:center;color:var(--mute)">— o gumawa ng account —</p>
+<input id="n" placeholder="Buong pangalan"><input id="e" type="email" placeholder="Gmail (opsyonal)">
+<p class="tip">💡 TIP: Gmail lang ang pwede. Kung wala kang Gmail, ilagay na lang ang iyong buong pangalan.</p>
+<p id="err" style="color:#b5483f"></p><button style="width:100%" onclick="go()">Pasok</button></div></main>
+<script src="app.js"></script><script>if(user())location.href='index.html';function go(){const r=login(n.value,e.value);r?err.textContent=r:location.href='index.html'}</script></body></html>

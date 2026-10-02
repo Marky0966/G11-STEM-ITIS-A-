@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>G11 STEM ITIS A1</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<main><div class="hero"><h1>G11 STEM ITIS A1</h1><p>Sama-samang reviewer ng klase. Dahan-dahan lang, step by step. 🌱</p><a class="btn" style="background:var(--acc)" href="subjects.html">Simulan ang review</a></div>
+<h2>🔔 Paalala sa Review</h2><div id="al"></div>
+<h2 style="margin-top:24px">Mga Term</h2><div class="grid" id="t"></div>
+<h2 style="margin-top:24px">Mga Subject</h2><div class="grid" id="s"></div></main>
+<script src="app.js"></script><script>guard();nav('index.html');
+const A=db.get('alerts',['Balikan ang Term 1 notes bago ang susunod na quiz.','I-review ang mga bagong lesson na in-upload ng klase.']);
+al.innerHTML=A.map(a=>`<div class="alert">⏰ ${esc(a)}</div>`).join('');
+t.innerHTML=TERMS.map(x=>`<a class="card" style="text-decoration:none;color:inherit" href="subjects.html?term=${x}"><h3>${x}</h3><span class="tag">Buksan</span></a>`).join('');
+s.innerHTML=SUBJECTS.map(x=>`<a class="card" style="text-decoration:none;color:inherit" href="subjects.html?subject=${encodeURIComponent(x)}">📖 ${esc(x)}</a>`).join('');</script></body></html>

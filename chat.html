@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chat · G11 STEM ITIS A1</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<main><h2>💬 Class Chat</h2>
+<div id="nk" class="card"><p>Maglagay muna ng nickname bago makapag-chat.</p><input id="nn" placeholder="Nickname" maxlength="20"><button onclick="setNick()">Ipagpatuloy</button></div>
+<div id="box" hidden><div id="msgs"></div><div style="display:flex;gap:8px"><input id="mt" placeholder="Mag-type ng mensahe…" onkeydown="if(event.key=='Enter')send()"><button onclick="send()">Send</button></div></div></main>
+<script src="app.js"></script><script>guard();nav('chat.html');
+let nick=db.get('nick:'+user().name,'');
+function setNick(){if(!nn.value.trim())return;nick=nn.value.trim();db.set('nick:'+user().name,nick);open_()}
+function open_(){nk.hidden=true;box.hidden=false;draw()}
+function draw(){msgs.innerHTML=db.get('chat',[]).map(m=>`<div class="m"><b>${esc(m.n)}</b> <small>${m.t}</small><br>${esc(m.x)}</div>`).join('');msgs.scrollTop=1e9}
+function send(){if(!mt.value.trim())return;const c=db.get('chat',[]);c.push({n:nick,x:mt.value,t:new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})});db.set('chat',c.slice(-200));mt.value='';draw()}
+if(nick)open_();addEventListener('storage',draw);</script></body></html>

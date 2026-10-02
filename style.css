@@ -1,0 +1,21 @@
+:root{--bg:#f6f4ee;--card:#fff;--ink:#23323f;--mute:#6b7a86;--pri:#2f6f8f;--acc:#e8a33d;--ok:#3f8f6b;--line:#e3e0d6}
+@media(prefers-color-scheme:dark){:root{--bg:#1a2229;--card:#232e37;--ink:#e8eef2;--mute:#9fb0bb;--line:#33414c}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;margin:.2em 0}
+header{background:var(--pri);color:#fff;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 24px}
+header b{font-family:Georgia,serif;font-size:1.15rem;margin-right:auto}header a{color:#fff;text-decoration:none;opacity:.85;padding:4px 10px;border-radius:20px}
+header a:hover,header a.on{background:rgba(255,255,255,.2);opacity:1}
+main{max-width:1000px;margin:0 auto;padding:24px}
+.hero{background:linear-gradient(135deg,var(--pri),#4a9aa8);color:#fff;border-radius:18px;padding:40px 28px;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.alert{border-left:5px solid var(--acc);background:var(--card);padding:10px 14px;border-radius:8px;margin:8px 0}
+.tag{display:inline-block;font-size:.8rem;padding:2px 10px;border-radius:20px;background:var(--line);color:var(--mute)}
+input,select,textarea,button{font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);width:100%;margin:5px 0}
+button,.btn{background:var(--pri);color:#fff;border:0;cursor:pointer;width:auto;padding:9px 18px;text-decoration:none;display:inline-block;border-radius:10px}
+button.ok{background:var(--ok)}button.no{background:#b5483f}
+.tip{background:#fff6e0;color:#6a4b0a;padding:10px 14px;border-radius:10px;font-size:.92rem}
+img.n{max-width:100%;border-radius:10px;margin-top:8px}
+#msgs{height:380px;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.m{margin:6px 0}.m b{color:var(--pri)}.m small{color:var(--mute)}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:8px;border-bottom:1px solid var(--line)}

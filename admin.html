@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="fil"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Owner Panel</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<main><h2>🛡️ Owner Panel</h2><h3>Naghihintay ng approval</h3><div id="p"></div>
+<h3 style="margin-top:24px">Magdagdag ng paalala</h3><input id="an" placeholder="Hal. Review Term 2 Math bago Biyernes"><button onclick="addA()">Idagdag</button>
+<h3 style="margin-top:24px">Mga nag-login</h3><div class="card"><table id="lg"></table></div></main>
+<script src="app.js"></script><script>guard();if(!isOwner())location.href='index.html';nav('admin.html');
+function draw(){const L=db.get('lessons',[]);const w=L.filter(l=>!l.ok);
+p.innerHTML=w.length?w.map(l=>`<div class="card" style="margin:8px 0"><span class="tag">${esc(l.s)} · ${esc(l.t)}</span> <b>${esc(l.ti)}</b> — ${esc(l.by)}<p>${esc(l.tx)}</p>${l.im?`<img class="n" src="${l.im}" width="160">`:''}<button class="ok" onclick="dec(${l.id},1)">Approve</button> <button class="no" onclick="dec(${l.id},0)">Reject</button></div>`).join(''):'<p class="alert">Walang naghihintay.</p>';
+lg.innerHTML='<tr><th>Pangalan</th><th>Gmail</th><th>Oras</th></tr>'+db.get('logins',[]).slice().reverse().map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td>${esc(x.at)}</td></tr>`).join('')}
+function dec(id,ok){let L=db.get('lessons',[]);L=ok?L.map(l=>l.id==id?{...l,ok:true}:l):L.filter(l=>l.id!=id);db.set('lessons',L);draw()}
+function addA(){if(!an.value)return;const A=db.get('alerts',[]);A.unshift(an.value);db.set('alerts',A);an.value='';alert('Naidagdag!')}
+draw();</script></body></html>
